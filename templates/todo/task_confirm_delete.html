@@ -5,14 +5,14 @@
   <div>
     <h1>Do you really want to delete the task: </h1>
     <br>
-    <h3>{{ task }}?</h3>
+    <h3>"<span class="header-item-name">{{ task }}</span>" ?</h3>
     <hr>
 
     <form action="" method="post">
       {% csrf_token %}
 
-      <input type="submit" value="Do it!" class="btn btn-danger">
-      <a class="btn btn-secondary" href="{% url "todo:todo-list"%}">Cancel</a>
+      <input type="submit" value="Do it!" class="btn btn-outline-danger mr-4">
+      <a class="btn btn-outline-secondary" href="{% url "todo:todo-list"%}">Cancel</a>
     </form>
   </div>
 {% endblock %}
