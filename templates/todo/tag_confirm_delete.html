@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <div>
+    <h1>Do you really want to delete the tag:</h1>
+    <br>
+    <h3>"<span class="header-item-name">{{ tag }}</span>" ?</h3>
+    <hr>
+
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <input type="submit" value="Confirm" class="btn btn-outline-danger mr-4">
+      <a class="btn btn-outline-secondary" href="{% url "todo:tag-list" %}">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
