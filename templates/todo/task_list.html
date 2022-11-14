@@ -3,38 +3,50 @@
 {% block content %}
   <h1>Todo List</h1>
   <hr>
+  <a
+      class="btn btn-outline-primary"
+      href="{% url "todo:task-create" %}">
+    Create new task
+  </a>
 
   {% if task_list %}
 
     {% for task in task_list %}
       <div class="todo-task">
+        <div class="main-todo-content">
+          <p>
+            {% if task.done %}
+              <span class="done">Complete</span>
+            {% else %}
+              <span class="not-done">Not done</span>
+            {% endif %}
+            <strong class="task-content">{{ task.content }}</strong>
+          </p>
 
-        <p>
-          <strong>{{ task.content }}</strong>
-          {% if task.done %}
-            <span class="done">Completed!</span>
-          {% else %}
-            <span class="not-done">Not done</span>
-          {% endif %}
-        </p>
-
-        <p>
-          Created at: {{ task.datetime }}
-          {% if task.deadline %}
-            <span class="deadline">
+          <p>
+            Created at: {{ task.datetime }}
+            {% if task.deadline %}
+              <span class="deadline">
               Deadline: {{ task.deadline }}
             </span>
-          {% endif %}
-        </p>
+            {% endif %}
+          </p>
 
-        <p>
-          Tags:
-          {% for tag in task.tags.all %}
-            {{ tag.name }}
-          {% endfor %}
-        </p>
+          <p>
+            <strong>Tags: </strong>
+            {% for tag in task.tags.all %}
+              {{ tag.name }}
+            {% endfor %}
+          </p>
+        </div>
 
+        <div class="todo-buttons">
+          <a class="btn btn-outline-secondary" href="{% url "todo:task-update" pk=task.id %}">Update task</a>
+          <a class="btn btn-outline-danger mt-3" href="{% url "todo:task-delete" pk=task.id %}">Delete task</a>
+        </div>
       </div>
+
+
 
 
     {% endfor %}
