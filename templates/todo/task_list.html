@@ -16,9 +16,9 @@
         <div class="main-todo-content">
           <p>
             {% if task.done %}
-              <span class="done">Complete</span>
+              <a href="#" class="btn btn-outline-success done">Complete</a>
             {% else %}
-              <span class="not-done">Not done</span>
+              <a href="#" class="btn btn-outline-danger not-done">Not done</a>
             {% endif %}
             <strong class="task-content">{{ task.content }}</strong>
           </p>
