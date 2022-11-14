@@ -20,7 +20,6 @@ class TaskForm(forms.ModelForm):
     deadline = forms.DateTimeField(
         input_formats="%Y-%m-%d %H:%M",
         required=False,
-        initial=datetime.today,
         widget=forms.TextInput(attrs={"placeholder": "Enter time in format: 'yyyy-mm-dd hh:mm'"})
     )
 
