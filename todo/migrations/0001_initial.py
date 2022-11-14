@@ -7,29 +7,44 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=63)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=63)),
             ],
         ),
         migrations.CreateModel(
-            name='TodoItem',
+            name="TodoItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.CharField(max_length=255)),
-                ('datetime', models.DateTimeField(auto_now_add=True)),
-                ('deadline', models.DateTimeField(blank=True, null=True)),
-                ('done', models.BooleanField(default=False)),
-                ('tags', models.ManyToManyField(related_name='tags', to='todo.tag')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content", models.CharField(max_length=255)),
+                ("datetime", models.DateTimeField(auto_now_add=True)),
+                ("deadline", models.DateTimeField(blank=True, null=True)),
+                ("done", models.BooleanField(default=False)),
+                ("tags", models.ManyToManyField(related_name="tags", to="todo.tag")),
             ],
             options={
-                'ordering': ['done', 'datetime'],
+                "ordering": ["done", "datetime"],
             },
         ),
     ]
