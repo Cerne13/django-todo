@@ -33,9 +33,8 @@
           </p>
 
           <p>
-            <strong>Tags: </strong>
             {% for tag in task.tags.all %}
-              {{ tag.name }}
+              <span class="btn btn-sm btn-outline-secondary disabled">{{ tag.name }}</span>
             {% endfor %}
           </p>
         </div>
