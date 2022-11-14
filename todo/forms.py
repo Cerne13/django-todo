@@ -1,7 +1,7 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django import forms
-from django.contrib.admin.widgets import AdminSplitDateTime
+from django.core.exceptions import ValidationError
 
 from todo.models import Task, Tag
 
@@ -22,13 +22,10 @@ class TaskForm(forms.ModelForm):
         required=False,
     )
 
-    # deadline = forms.SplitDateTimeField(required=False, widget=AdminSplitDateTime())
-
     deadline = forms.DateTimeField(
         input_formats="%Y-%m-%d %H:%M",
         required=False,
         widget=DateTimeInput(),
-        # widget=forms.TextInput(attrs={"placeholder": "Enter time in format: 'yyyy-mm-dd hh:mm'"})
     )
 
     class Meta:
@@ -39,3 +36,18 @@ class TaskForm(forms.ModelForm):
             "done",
             "tags",
         )
+
+    # made validation after the deadline - just for myself
+    # there is a problem with timezone - trying to fix +- 2 hour diff between UTC and local :(
+    def clean_deadline(self):
+        deadline = self.cleaned_data["deadline"]
+
+        if deadline:
+            print(deadline)
+            now = timezone.now()
+            print(now)
+
+            if deadline <= now:
+                raise ValidationError("Deadline cannot be earlier than current date and time")
+
+        return deadline
