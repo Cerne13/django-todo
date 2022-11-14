@@ -8,7 +8,7 @@ class Tag(models.Model):
         return self.name
 
 
-class TodoItem(models.Model):
+class Task(models.Model):
     content = models.CharField(max_length=255, unique=False)
     datetime = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(null=True, blank=True)

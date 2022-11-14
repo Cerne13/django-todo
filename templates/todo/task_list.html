@@ -4,14 +4,14 @@
   <h1>Todo List</h1>
   <hr>
 
-  {% if todo_list %}
+  {% if task_list %}
 
-    {% for todo in todo_list %}
+    {% for task in task_list %}
       <div class="todo-task">
 
         <p>
-          <strong>{{ todo.content }}</strong>
-          {% if todo.done %}
+          <strong>{{ task.content }}</strong>
+          {% if task.done %}
             <span class="done">Completed!</span>
           {% else %}
             <span class="not-done">Not done</span>
@@ -19,10 +19,10 @@
         </p>
 
         <p>
-          Created at: {{ todo.datetime }}
-          {% if todo.deadline %}
+          Created at: {{ task.datetime }}
+          {% if task.deadline %}
             <span class="deadline">
-              Deadline: {{ todo.deadline }}
+              Deadline: {{ task.deadline }}
             </span>
           {% endif %}
         </p>
