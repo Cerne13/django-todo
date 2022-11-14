@@ -1,8 +1,13 @@
 from datetime import datetime
 
 from django import forms
+from django.contrib.admin.widgets import AdminSplitDateTime
 
 from todo.models import Task, Tag
+
+
+class DateTimeInput(forms.DateTimeInput):
+    input_type = "datetime-local"
 
 
 class TaskForm(forms.ModelForm):
@@ -17,10 +22,13 @@ class TaskForm(forms.ModelForm):
         required=False,
     )
 
+    # deadline = forms.SplitDateTimeField(required=False, widget=AdminSplitDateTime())
+
     deadline = forms.DateTimeField(
         input_formats="%Y-%m-%d %H:%M",
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "Enter time in format: 'yyyy-mm-dd hh:mm'"})
+        widget=DateTimeInput(),
+        # widget=forms.TextInput(attrs={"placeholder": "Enter time in format: 'yyyy-mm-dd hh:mm'"})
     )
 
     class Meta:
