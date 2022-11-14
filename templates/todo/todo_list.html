@@ -2,13 +2,44 @@
 
 {% block content %}
   <h1>Todo List</h1>
+  <hr>
 
   {% if todo_list %}
 
     {% for todo in todo_list %}
-      "aaa"
-    {% endfor %}
-    
+      <div class="todo-task">
 
+        <p>
+          <strong>{{ todo.content }}</strong>
+          {% if todo.done %}
+            <span class="done">Completed!</span>
+          {% else %}
+            <span class="not-done">Not done</span>
+          {% endif %}
+        </p>
+
+        <p>
+          Created at: {{ todo.datetime }}
+          {% if todo.deadline %}
+            <span class="deadline">
+              Deadline: {{ todo.deadline }}
+            </span>
+          {% endif %}
+        </p>
+
+        <p>
+          Tags:
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
+        </p>
+
+      </div>
+
+
+    {% endfor %}
+
+  {% else %}
+    <h3>No tasks yet</h3>
   {% endif %}
 {% endblock %}
