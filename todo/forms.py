@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django import forms
 
 from todo.models import Task, Tag
@@ -13,6 +15,13 @@ class TaskForm(forms.ModelForm):
         queryset=Tag.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
+    )
+
+    deadline = forms.DateTimeField(
+        input_formats="%Y-%m-%d %H:%M",
+        required=False,
+        initial=datetime.today,
+        widget=forms.TextInput(attrs={"placeholder": "Enter time in format: 'yyyy-mm-dd hh:mm'"})
     )
 
     class Meta:
